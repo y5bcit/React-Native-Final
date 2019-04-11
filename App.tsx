@@ -7,27 +7,27 @@ import DummyComponent from './components/DummyComponent'
 
 const RootStack = createStackNavigator({
     Home: {
-      screen: HomeScreen
+        screen: HomeScreen
     },
     Maps: {
-      screen: MapComponent
+        screen: MapComponent
     },
     Gallery: {
-      screen: DummyComponent
+        screen: DummyComponent
     },
     Animation: {
-      screen: DummyComponent
+        screen: DummyComponent
     }
-  },
-  {
-    initialRouteName: "Home"
-  }
+},
+    {
+        initialRouteName: "Home"
+    }
 );
 
 const AppContainer = createAppContainer(RootStack);
 
 export default class App extends React.Component {
-  public render() {
-    return <AppContainer />;
-  }
+    public render() {
+        return <AppContainer />;
+    }
 }

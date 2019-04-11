@@ -13,7 +13,7 @@ export default class DummyComponent extends React.Component<{}, {}> {
     render() {
         return (
             <View>
-            <Text>Test</Text>
+                <Text>Test</Text>
             </View>
         )
     }

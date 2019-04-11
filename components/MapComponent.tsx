@@ -44,12 +44,12 @@ export default class MapComponent extends React.Component<{}, MapState> {
         console.log('Check position');
         navigator.geolocation.getCurrentPosition((position) => {
             this.setState({
-              region: {
-                latitude: position.coords.latitude,
-                latitudeDelta: 0.025,
-                longitude: position.coords.longitude,
-                longitudeDelta: 0.025
-              }
+                region: {
+                    latitude: position.coords.latitude,
+                    latitudeDelta: 0.025,
+                    longitude: position.coords.longitude,
+                    longitudeDelta: 0.025
+                }
             });
         },
             (error) => alert(JSON.stringify(error)));
@@ -57,12 +57,12 @@ export default class MapComponent extends React.Component<{}, MapState> {
 
     render() {
         return (
-            <MapView 
-            region={this.state.region}
-            style={styles.map}>
-            
-            <Marker coordinate={this.state.region}/>
-            <Circle center={this.state.region} radius={500} />
+            <MapView
+                region={this.state.region}
+                style={styles.map}>
+
+                <Marker coordinate={this.state.region} />
+                <Circle center={this.state.region} radius={500} />
 
             </MapView>
         )
