@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer } from "react-navigation";
-
 import HomeScreen from './components/hompage'
 import MapComponent from './components/MapComponent'
 import DummyComponent from './components/DummyComponent'
