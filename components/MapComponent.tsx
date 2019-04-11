@@ -1,13 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, StyleSheet } from 'react-native';
 import MapView, { Marker, Circle } from 'react-native-maps';
 import Permissions from "react-native-permissions";
 
-export default class MapComponent extends Component {
+interface MapState {
+    region: {
+        latitude: number;
+        latitudeDelta: number;
+        longitude: number;
+        longitudeDelta: number;
+    },
+    locationPermission: string
+}
 
-    constructor() {
-        super();
+export default class MapComponent extends React.Component<{}, MapState> {
+    constructor(props) {
+        super(props);
         this.state = {
             region: {
                 latitude: 0,

@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, StyleSheet } from 'react-native';
 import Permissions from 'react-native-permissions';
 
-export default class GPSComponent extends Component {
-
+export default class GPSComponent extends React.Component<{}, { locationPermission: string, position: string }> {
     static navigationOptions = {
         title: 'Maps'
     }
-
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             locationPermission: "unknown",
             position: "unknown"
