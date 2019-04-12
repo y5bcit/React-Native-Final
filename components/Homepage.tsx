@@ -21,7 +21,7 @@ export default class HomeScreen extends React.Component<{ navigation: any }, {}>
     }
 
     render() {
-        const buttons = ["Maps", "Animatable", "Animated", "Image", "PreloadApi", "Api"].map((value, index, array) => {
+        const buttons = ["Maps", "Animated", "Api"].map((value, index, array) => {
             return (<View key={value + "v"}>
                 <Button title={value} onPress={(ev) => {
                     if (value === "PreloadApi") {

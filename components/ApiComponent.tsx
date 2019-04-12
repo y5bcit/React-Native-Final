@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, FlatList, Image } from "react-native";
+import { Text, View, StyleSheet, FlatList, Image, TextInput } from "react-native";
 import Helper from "../Helper";
 
 export default class ApiComponent extends React.Component<{}, { data: any }> {
@@ -10,7 +10,7 @@ export default class ApiComponent extends React.Component<{}, { data: any }> {
         };
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
         fetch(Helper.picsum).then(response => response.json())
             .then(result => {
                 result = result.slice(10, 20);
@@ -18,26 +18,43 @@ export default class ApiComponent extends React.Component<{}, { data: any }> {
                     data: result
                 });
             }).catch(error => console.error(error));
-    }
+    }*/
 
     render() {
-        return (
+        return (<View style={{ width: "100%", height: "100%" }}>
+            <View style={{ width: "100%", height: "10%" }}>
+                <TextInput style={{                    height: "100%",                    width: "100%",                    borderColor: "gray",                    borderWidth: 1,                    textAlign: "center"                }} placeholder="Mars? Moon?" onSubmitEditing={(event) =>
+                    fetch("https://images-api.nasa.gov/search?q=" + encodeURIComponent(event.nativeEvent.text)).then(response => response.json())
+                        .then(result => {
+                            this.setState({
+                                data: result.collection.items
+                            });
+                        }).catch(error => console.error(error))}
+                />
+            </View>
             <FlatList keyExtractor={(i, k) => k.toString()} extraData={this.state} data={this.state.data}
-                renderItem={({ item }) => (
-                    <View style={styles.item}>
+                ListEmptyComponent={() => {
+                    return (<View style={{ width: "100%" }}><Text style={{ textAlign: "center" }}>Go and type in something to search!</Text></View>)
+                }}
+                renderItem={({ item }) => {
+                    if (item === undefined || item.links === undefined)
+                        return (<View></View>);
+                    return (
+                        <View style={styles.item}>
                         {
                             /*
                             * Change code here:
                             * item.n item.s etc into your api data
                             */
                         }
-                        <Text style={{ fontSize: 24 }}>{item.author} Image ID: {item.id}</Text>
-                        <Image style={{ width: 50, height: 50 }} source={{
-                            uri: "https://picsum.photos/200/300?image=" + item.id
-                        }}></Image>
-                    </View>
-                )}
-            />
+                            <Text style={{ fontSize: 16, textAlign: "center", fontWeight: "bold" }}>{item.data[0].title}</Text>
+                            <Image style={{ width: 175, height: 175 }} source={{
+                                uri: item.links[0].href
+                            }}></Image>
+                        </View>
+                    )
+                }}
+            /></View>
         )
     }
 }
