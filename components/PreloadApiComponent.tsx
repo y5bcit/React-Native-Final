@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet, FlatList, Image } from "react-native";
 
-export default class PreloadApiComponent extends React.Component<{ navigation: any }, { data: any }> {
+export default class PreloadApiComponent extends React.Component<{ navigation: any }, {}> {
     constructor(props) {
         super(props);
         this.state = {
@@ -10,15 +10,14 @@ export default class PreloadApiComponent extends React.Component<{ navigation: a
     }
 
     render() {
-        let data = this.props.navigation.getParam("data", {});
-        this.setState({ data: data });
+        let data = this.props.navigation.getParam("data", []);
         return (
-            <FlatList keyExtractor={(i, k) => k.toString()} extraData={this.state} data={this.state.data}
+            <FlatList keyExtractor={(i, k) => k.toString()} extraData={data} data={data}
                 renderItem={({ item }) => (
                     <View style={styles.item}>
                         {
-                            /* 
-                            * Change code here: 
+                            /*
+                            * Change code here:
                             * item.n item.s etc into your api data
                             */
                         }
