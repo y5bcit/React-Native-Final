@@ -1,6 +1,5 @@
 import React from "react";
-import { Text, Image, Button, Animated, Dimensions } from "react-native";
-import ApiComponent from "./ApiComponent";
+import { View, Text, Image, Button, Animated, Dimensions } from "react-native";
 const screenHeight = Dimensions.get("window").height
 
 export default class AnimatedComponent extends React.Component<{}, { timer: Animated.Value }> {
@@ -26,17 +25,26 @@ export default class AnimatedComponent extends React.Component<{}, { timer: Anim
 
     render() {
         return (
-            <Animated.View style={{
-                top: this.state.timer,
-                transform: [{
-                    rotateY: this.state.timer.interpolate({
-                        inputRange: [0, screenHeight],
-                        outputRange: ["0deg", "360deg"]
-                    })
-                }]
-            }}>
-                <Image style={{ width: 92, height: 30 }} source={{ uri: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" }}></Image>
-            </Animated.View>
+            <View>
+                <Animated.View style={{
+                    top: this.state.timer,
+                    transform: [{
+                        rotateY: this.state.timer.interpolate({
+                            inputRange: [0, screenHeight],
+                            outputRange: ["0deg", "360deg"]
+                        })
+                    }]
+                }}>
+                    <Image style={{ width: 92, height: 30 }} source={{ uri: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" }}></Image>
+                </Animated.View>
+                <Animated.View style={{
+                    transform: [{
+                        translateX: this.state.timer
+                    }]
+                }}>
+                    <Image style={{ width: 92, height: 30 }} source={{ uri: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" }}></Image>
+                </Animated.View>
+            </View>
         )
     }
 }

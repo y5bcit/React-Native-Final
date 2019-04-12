@@ -4,9 +4,6 @@ import { Text, View, StyleSheet, FlatList, Image } from "react-native";
 export default class PreloadApiComponent extends React.Component<{ navigation: any }, {}> {
     constructor(props) {
         super(props);
-        this.state = {
-            data: []
-        };
     }
 
     render() {

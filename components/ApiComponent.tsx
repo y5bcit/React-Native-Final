@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet, FlatList, Image } from "react-native";
-import Consts from "../Consts";
+import Helper from "../Helper";
 
 export default class ApiComponent extends React.Component<{}, { data: any }> {
     constructor(props) {
@@ -11,9 +11,8 @@ export default class ApiComponent extends React.Component<{}, { data: any }> {
     }
 
     componentDidMount() {
-        fetch(Consts.apiPath).then(response => response.json())
+        fetch(Helper.picsum).then(response => response.json())
             .then(result => {
-                // Picsum provide a array so only take first 10
                 result = result.slice(10, 20);
                 this.setState({
                     data: result

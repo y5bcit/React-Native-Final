@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Dimensions, Text, Button } from "react-native";
 import { LinearGradient } from "expo";
-import Consts from "../Consts";
+import Helper from "../Helper";
 const screenHeight = Dimensions.get("window").height
 const screenWidth = Dimensions.get("window").width
 
@@ -25,7 +25,7 @@ export default class HomeScreen extends React.Component<{ navigation: any }, {}>
             return (<View key={value + "v"}>
                 <Button title={value} onPress={(ev) => {
                     if (value === "PreloadApi") {
-                        fetch(Consts.apiPath).then(response => response.json())
+                        fetch(Helper.picsum).then(response => response.json())
                             .then(result => {
                                 // Picsum provide a array so only take first 10
                                 result = result.slice(0, 10);
@@ -40,8 +40,6 @@ export default class HomeScreen extends React.Component<{ navigation: any }, {}>
         });
         return <LinearGradient colors={["#000000", "#323232"]} style={StyleSheet.absoluteFill}>
             <View style={styles.container}>
-                <Text style={{ color: "white", textAlign: "center", fontSize: 40 }}>React-Native</Text>
-                <Text style={{ color: "white", textAlign: "center", fontSize: 40 }}>Final</Text>
                 {buttons}
             </View>
         </LinearGradient>;
