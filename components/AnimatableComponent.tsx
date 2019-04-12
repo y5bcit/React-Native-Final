@@ -1,7 +1,6 @@
 import React from "react";
 import { Dimensions, Text, View, Button } from "react-native";
 import * as Animatable from "react-native-animatable"
-
 const screenHeight = Dimensions.get("window").height
 const screenWidth = Dimensions.get("window").width
 
@@ -9,7 +8,10 @@ export default class AnimatableComponent extends React.Component<{}, {}> {
     constructor(props) {
         super(props);
     }
+
+    // Next line is TypeScript Only
     text: any;
+
     handleTextRef = ref => this.text = ref;
 
     render() {
@@ -21,6 +23,9 @@ export default class AnimatableComponent extends React.Component<{}, {}> {
                         this.text.transition({ top: 0 }, { top: 200 }, 5000, "linear");
                     }}></Button>
                     <Animatable.Text ref={this.handleTextRef}>Moving down when clicked</Animatable.Text>
+                </View>
+                <View>
+                    <Animatable.Text animation={"fadeIn"} duration={5000}>Fade In</Animatable.Text>
                 </View>
                 <View>
                     <Animatable.Text animation={{
