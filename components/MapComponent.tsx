@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Text, View, StyleSheet } from 'react-native';
 import MapView, { Marker, Circle } from 'react-native-maps';
 import Permissions from "react-native-permissions";
@@ -29,13 +28,12 @@ export default class MapComponent extends React.Component<{}, MapState> {
     }
 
     _requestPermissions() {
-        Permissions.request('location')
-            .then(response => {
-                this.setState({
-                    locationPermission: response
-                })
-                console.log("Response: " + response);
-            });
+        Permissions.request('location').then(response => {
+            this.setState({
+                locationPermission: response
+            })
+            console.log("Response: " + response);
+        });
     }
 
     componentDidMount() {
@@ -51,26 +49,15 @@ export default class MapComponent extends React.Component<{}, MapState> {
                     longitudeDelta: 0.025
                 }
             });
-        },
-            (error) => alert(JSON.stringify(error)));
+        }, (error) => alert(JSON.stringify(error)));
     }
 
     render() {
         return (
-            <MapView
-                region={this.state.region}
-                style={styles.map}>
-
+            <MapView region={this.state.region}>
                 <Marker coordinate={this.state.region} />
                 <Circle center={this.state.region} radius={500} />
-
             </MapView>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    map: {
-        ...StyleSheet.absoluteFillObject
-    }
-})

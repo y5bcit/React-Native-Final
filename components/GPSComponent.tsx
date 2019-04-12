@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Text, View, StyleSheet } from 'react-native';
 import Permissions from 'react-native-permissions';
 
