@@ -1,11 +1,11 @@
 import React from "react";
-import { Text, View, StyleSheet, FlatList } from "react-native";
+import { Text, View, StyleSheet, FlatList, Image } from "react-native";
 
 export default class PreloadApiComponent extends React.Component<{ navigation: any }, { data: any }> {
     constructor(props) {
         super(props);
         this.state = {
-            data: undefined
+            data: []
         };
     }
 
@@ -16,14 +16,17 @@ export default class PreloadApiComponent extends React.Component<{ navigation: a
             <FlatList keyExtractor={(i, k) => k.toString()} extraData={this.state} data={this.state.data}
                 renderItem={({ item }) => (
                     <View style={styles.item}>
-                    {
-                        /* 
-                        * Change code here: 
-                        * item.n item.s etc into your api data
-                        */
-                    }
-                        <Text style={{ fontSize: 24 }}>{item.n}</Text>
-                        <Text style={{ fontSize: 16 }}>{item.s}</Text>
+                        {
+                            /* 
+                            * Change code here: 
+                            * item.n item.s etc into your api data
+                            */
+                        }
+                        <Text style={{ fontSize: 24 }}>{item.author}</Text>
+                        <Text style={{ fontSize: 16 }}>https://picsum.photos/200/300?image={item.id}</Text>
+                        <Image style={{ width: 50, height: 50 }} source={{
+                            uri: "https://picsum.photos/200/300?image=" + item.id
+                        }}></Image>
                     </View>
                 )}
             />

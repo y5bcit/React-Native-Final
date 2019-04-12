@@ -1,35 +1,27 @@
 import React from "react";
 import { Text, Image, Button, Animated, Dimensions } from "react-native";
+import ApiComponent from "./ApiComponent";
 const screenHeight = Dimensions.get("window").height
 
-export default class AnimatedComponent extends React.Component<{}, { timer: Animated.Value, willUnmount: boolean }> {
+export default class AnimatedComponent extends React.Component<{}, { timer: Animated.Value }> {
     constructor(props) {
         super(props);
         this.state = {
-            timer: new Animated.Value(0),
-            willUnmount: false
+            timer: new Animated.Value(0)
         };
     }
 
     componentDidMount() {
-        Animated.timing(this.state.timer, {
-            toValue: screenHeight,
-            duration: 10000,
-        // If you don't want infinite loop, comment following code and change it to
-        // }).start();
-        }).start(() => {
-            if (this.state.willUnmount) {
-                return;
-            }
-            this.setState({
-                timer: new Animated.Value(0)
-            });
-            this.componentDidMount();
-        });
-    }
-
-    componentWillUnmount() {
-        this.setState({ willUnmount: true });
+        Animated.loop(Animated.sequence([
+            Animated.timing(this.state.timer, {
+                toValue: screenHeight,
+                duration: 10000,
+            }), Animated.timing(this.state.timer, {
+                toValue: 0,
+                duration: 1,
+            })]), {
+                iterations: 3 // -1 for infinite
+            }).start();
     }
 
     render() {

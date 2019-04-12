@@ -1,19 +1,24 @@
 import React from "react";
-import { Text, View, StyleSheet, FlatList } from "react-native";
+import { Text, View, StyleSheet, FlatList, Image } from "react-native";
 import Consts from "../Consts";
 
 export default class ApiComponent extends React.Component<{}, { data: any }> {
     constructor(props) {
         super(props);
         this.state = {
-            data: undefined
+            data: []
         };
     }
 
     componentDidMount() {
         fetch(Consts.apiPath).then(response => response.json())
-            .then(data => this.setState({ data }))
-            .catch(error => console.error(error));
+            .then(result => {
+                // Picsum provide a array so only take first 10
+                result = result.slice(10, 20);
+                this.setState({
+                    data: result
+                });
+            }).catch(error => console.error(error));
     }
 
     render() {
@@ -22,13 +27,16 @@ export default class ApiComponent extends React.Component<{}, { data: any }> {
                 renderItem={({ item }) => (
                     <View style={styles.item}>
                         {
-                            /* 
-                            * Change code here: 
+                            /*
+                            * Change code here:
                             * item.n item.s etc into your api data
                             */
                         }
-                        <Text style={{ fontSize: 24 }}>{item.n}</Text>
-                        <Text style={{ fontSize: 16 }}>{item.s}</Text>
+                        <Text style={{ fontSize: 24 }}>{item.author}</Text>
+                        <Text style={{ fontSize: 16 }}>https://picsum.photos/200/300?image={item.id}</Text>
+                        <Image style={{ width: 50, height: 50 }} source={{
+                            uri: "https://picsum.photos/200/300?image=" + item.id
+                        }}></Image>
                     </View>
                 )}
             />

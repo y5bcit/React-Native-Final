@@ -21,12 +21,16 @@ export default class HomeScreen extends React.Component<{ navigation: any }, {}>
     }
 
     render() {
-        const buttons = ["Maps", "Animatable", "Animated", "Image", "Api", "PreloadApi"].map((value, index, array) => {
+        const buttons = ["Maps", "Animatable", "Animated", "Image", "PreloadApi", "Api"].map((value, index, array) => {
             return (<View key={value + "v"}>
                 <Button title={value} onPress={(ev) => {
                     if (value === "PreloadApi") {
                         fetch(Consts.apiPath).then(response => response.json())
-                            .then(data => this.props.navigation.navigate(value, { data }))
+                            .then(result => {
+                                // Picsum provide a array so only take first 10
+                                result = result.slice(0, 10);
+                                this.props.navigation.navigate(value, { data: result })
+                            })
                             .catch(error => console.error(error));
                         return;
                     }
