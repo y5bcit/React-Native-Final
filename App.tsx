@@ -7,6 +7,7 @@ import DummyComponent from "./components/DummyComponent"
 import ApiComponent from "./components/ApiComponent";
 import PreloadApiComponent from "./components/PreloadApiComponent";
 import AnimatableComponent from "./components/AnimatableComponent";
+import AnimatedComponent from "./components/AnimatedComponent";
 
 const RootStack = createStackNavigator({
     Home: {
@@ -18,8 +19,11 @@ const RootStack = createStackNavigator({
     Image: {
         screen: DummyComponent
     },
-    Animation: {
+    Animatable: {
         screen: AnimatableComponent
+    },
+    Animated: {
+        screen: AnimatedComponent
     },
     Api: {
         screen: ApiComponent

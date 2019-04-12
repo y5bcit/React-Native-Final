@@ -1,7 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Dimensions, Text, Button } from "react-native";
 import { LinearGradient } from "expo";
-import * as Animatable from "react-native-animatable"
 import Consts from "../Consts";
 const screenHeight = Dimensions.get("window").height
 const screenWidth = Dimensions.get("window").width
@@ -22,7 +21,7 @@ export default class HomeScreen extends React.Component<{ navigation: any }, {}>
     }
 
     render() {
-        const buttons = ["Maps", "Animation", "Image", "Api", "PreloadApi"].map((value, index, array) => {
+        const buttons = ["Maps", "Animatable", "Animated", "Image", "Api", "PreloadApi"].map((value, index, array) => {
             return (<View key={value + "v"}>
                 <Button title={value} onPress={(ev) => {
                     if (value === "PreloadApi") {
