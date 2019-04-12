@@ -1,6 +1,6 @@
-import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import MapView, { Marker, Circle } from 'react-native-maps';
+import React from "react";
+import { Text, View, StyleSheet } from "react-native";
+import MapView, { Marker, Circle } from "react-native-maps";
 import Permissions from "react-native-permissions";
 
 interface MapState {
@@ -18,28 +18,24 @@ export default class MapComponent extends React.Component<{}, MapState> {
         super(props);
         this.state = {
             region: {
-                latitude: 0,
-                latitudeDelta: 0,
-                longitude: 0,
-                longitudeDelta: 0
+                latitude: 47.6062,
+                longitude: 122.3321,
+                latitudeDelta: 0.02,
+                longitudeDelta: 0.02
             },
             locationPermission: "unknown"
         };
     }
 
-    _requestPermissions() {
-        Permissions.request('location').then(response => {
+    componentDidMount() {
+        console.log("Start");
+        Permissions.request("location").then(response => {
             this.setState({
                 locationPermission: response
             })
             console.log("Response: " + response);
         });
-    }
-
-    componentDidMount() {
-        console.log('Start');
-        this._requestPermissions();
-        console.log('Check position');
+        console.log("Check position");
         navigator.geolocation.getCurrentPosition((position) => {
             this.setState({
                 region: {
@@ -49,12 +45,12 @@ export default class MapComponent extends React.Component<{}, MapState> {
                     longitudeDelta: 0.025
                 }
             });
-        }, (error) => alert(JSON.stringify(error)));
+        }, (error) => console.log(JSON.stringify(error)));
     }
 
     render() {
         return (
-            <MapView region={this.state.region}>
+            <MapView region={this.state.region} style={{ width: "100%", height: "100%" }}>
                 <Marker coordinate={this.state.region} />
                 <Circle center={this.state.region} radius={500} />
             </MapView>

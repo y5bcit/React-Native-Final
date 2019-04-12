@@ -1,11 +1,10 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React from "react";
+import { Text, View } from "react-native";
 
 export default class DummyComponent extends React.Component<{}, {}> {
     constructor(props) {
         super(props);
         this.state = {
-
         }
     }
 

@@ -1,20 +1,20 @@
-import React from 'react';
-import { View, StyleSheet, Dimensions, Text, Button } from 'react-native';
-import { LinearGradient } from 'expo';
-import * as Animatable from 'react-native-animatable'
-import Consts from '../Consts';
-const screenHeight = Dimensions.get('window').height
-const screenWidth = Dimensions.get('window').width
+import React from "react";
+import { View, StyleSheet, Dimensions, Text, Button } from "react-native";
+import { LinearGradient } from "expo";
+import * as Animatable from "react-native-animatable"
+import Consts from "../Consts";
+const screenHeight = Dimensions.get("window").height
+const screenWidth = Dimensions.get("window").width
 
 export default class HomeScreen extends React.Component<{ navigation: any }, {}> {
     static navigationOptions = {
-        title: 'Home',
+        title: "Home",
         headerStyle: {
-            backgroundColor: '#0F0F0F'
+            backgroundColor: "#0F0F0F"
         },
         headerTitleStyle: {
-            fontWeight: 'bold',
-            color: 'white'
+            fontWeight: "bold",
+            color: "white"
         }
     }
     constructor(props) {
@@ -22,7 +22,7 @@ export default class HomeScreen extends React.Component<{ navigation: any }, {}>
     }
 
     render() {
-        const buttons = ['Maps', 'Animation', 'Image', "Api", "PreloadApi"].map((value, index, array) => {
+        const buttons = ["Maps", "Animation", "Image", "Api", "PreloadApi"].map((value, index, array) => {
             return (<Animatable.View key={value + "v"} delay={2000} animation="fadeIn" duration={3000}>
                 <Button title={value} onPress={(ev) => {
                     if (value === "PreloadApi") {
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent"
     },
     buttons: {
-        position: 'absolute',
+        position: "absolute",
         marginLeft: screenWidth * 0.025,
         bottom: 0,
         width: screenWidth * 0.95,

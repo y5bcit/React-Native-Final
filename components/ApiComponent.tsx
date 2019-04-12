@@ -1,12 +1,12 @@
-import React from 'react';
-import { Text, View, StyleSheet, FlatList } from 'react-native';
-import Consts from '../Consts';
+import React from "react";
+import { Text, View, StyleSheet, FlatList } from "react-native";
+import Consts from "../Consts";
 
-export default class ApiComponent extends React.Component<{}, { data: any[] }> {
+export default class ApiComponent extends React.Component<{}, { data: any }> {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: undefined
         };
     }
 
@@ -21,6 +21,12 @@ export default class ApiComponent extends React.Component<{}, { data: any[] }> {
             <FlatList keyExtractor={(i, k) => k.toString()} extraData={this.state} data={this.state.data}
                 renderItem={({ item }) => (
                     <View style={styles.item}>
+                        {
+                            /* 
+                            * Change code here: 
+                            * item.n item.s etc into your api data
+                            */
+                        }
                         <Text style={{ fontSize: 24 }}>{item.n}</Text>
                         <Text style={{ fontSize: 16 }}>{item.s}</Text>
                     </View>
@@ -44,6 +50,6 @@ const styles = StyleSheet.create({
     placeholder: {
         margin: 6,
         fontSize: 18,
-        textAlign: 'center'
+        textAlign: "center"
     }
 });

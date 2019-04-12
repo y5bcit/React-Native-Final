@@ -1,10 +1,10 @@
-import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import Permissions from 'react-native-permissions';
+import React from "react";
+import { Text, View, StyleSheet } from "react-native";
+import Permissions from "react-native-permissions";
 
 export default class GPSComponent extends React.Component<{}, { locationPermission: string, position: string }> {
     static navigationOptions = {
-        title: 'Maps'
+        title: "Maps"
     }
     constructor(props) {
         super(props);
@@ -15,7 +15,7 @@ export default class GPSComponent extends React.Component<{}, { locationPermissi
     }
 
     _requestPermissions() {
-        Permissions.request('location')
+        Permissions.request("location")
             .then(response => {
                 this.setState({
                     locationPermission: response
@@ -25,13 +25,13 @@ export default class GPSComponent extends React.Component<{}, { locationPermissi
     }
 
     componentDidMount() {
-        console.log('Start');
+        console.log("Start");
         this._requestPermissions();
-        console.log('Check position');
+        console.log("Check position");
         navigator.geolocation.getCurrentPosition((position) => {
             console.log(position.coords);
-            console.log('My position: ' + position.coords.latitude + ', ' + position.coords.longitude);
-            let coordinates = position.coords.latitude + ', ' + position.coords.longitude;
+            console.log("My position: " + position.coords.latitude + ", " + position.coords.longitude);
+            let coordinates = position.coords.latitude + ", " + position.coords.longitude;
             this.setState({
                 position: coordinates
             })
@@ -52,13 +52,13 @@ export default class GPSComponent extends React.Component<{}, { locationPermissi
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#ecf0f1'
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#ecf0f1"
     },
     paragraph: {
         margin: 6,
         fontSize: 18,
-        textAlign: 'center'
+        textAlign: "center"
     }
 });

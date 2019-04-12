@@ -1,11 +1,12 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import HomeScreen from './components/Homepage'
-import MapComponent from './components/MapComponent'
-import DummyComponent from './components/DummyComponent'
-import ApiComponent from './components/ApiComponent';
-import PreloadApiComponent from './components/PreloadApiComponent';
+import HomeScreen from "./components/Homepage"
+import MapComponent from "./components/MapComponent"
+import DummyComponent from "./components/DummyComponent"
+import ApiComponent from "./components/ApiComponent";
+import PreloadApiComponent from "./components/PreloadApiComponent";
+import GPSComponent from "./components/GPSComponent";
 
 const RootStack = createStackNavigator({
     Home: {
