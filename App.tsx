@@ -6,7 +6,7 @@ import MapComponent from "./components/MapComponent"
 import DummyComponent from "./components/DummyComponent"
 import ApiComponent from "./components/ApiComponent";
 import PreloadApiComponent from "./components/PreloadApiComponent";
-import GPSComponent from "./components/GPSComponent";
+import AnimatableComponent from "./components/AnimatableComponent";
 
 const RootStack = createStackNavigator({
     Home: {
@@ -19,7 +19,7 @@ const RootStack = createStackNavigator({
         screen: DummyComponent
     },
     Animation: {
-        screen: DummyComponent
+        screen: AnimatableComponent
     },
     Api: {
         screen: ApiComponent

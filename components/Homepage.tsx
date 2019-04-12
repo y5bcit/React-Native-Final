@@ -23,7 +23,7 @@ export default class HomeScreen extends React.Component<{ navigation: any }, {}>
 
     render() {
         const buttons = ["Maps", "Animation", "Image", "Api", "PreloadApi"].map((value, index, array) => {
-            return (<Animatable.View key={value + "v"} delay={2000} animation="fadeIn" duration={3000}>
+            return (<View key={value + "v"}>
                 <Button title={value} onPress={(ev) => {
                     if (value === "PreloadApi") {
                         fetch(Consts.apiPath).then(response => response.json())
@@ -33,7 +33,7 @@ export default class HomeScreen extends React.Component<{ navigation: any }, {}>
                     }
                     this.props.navigation.navigate(value);
                 }}></Button>
-            </Animatable.View>);
+            </View>);
         });
         return <LinearGradient colors={["#000000", "#323232"]} style={StyleSheet.absoluteFill}>
             <View style={styles.container}>
