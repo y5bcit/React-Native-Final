@@ -29,15 +29,16 @@ export default class MapComponent extends React.Component<{}, MapState> {
     }
 
     fetchTodos(location) {
-        let result = Helper.GoogleGeocodeApi("api", location);
-        this.setState({
-            region: {
-                latitude: result[0].geometry.location.lat,
-                latitudeDelta: 0.025,
-                longitude: result[0].geometry.location.lng,
-                longitudeDelta: 0.025
-            }
-        });
+        fetch(Helper.GoogleGeocodeApi("API", location)).then(r => r.json()).then(r => {
+            this.setState({
+                region: {
+                    latitude: r.results[0].geometry.location.lat,
+                    latitudeDelta: 0.025,
+                    longitude: r.results[0].geometry.location.lng,
+                    longitudeDelta: 0.025
+                }
+            });
+        })
     }
 
     componentDidMount() {

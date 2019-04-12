@@ -31,8 +31,7 @@ export default class ApiComponent extends React.Component<{}, { data: any }> {
                             * item.n item.s etc into your api data
                             */
                         }
-                        <Text style={{ fontSize: 24 }}>{item.author}</Text>
-                        <Text style={{ fontSize: 16 }}>https://picsum.photos/200/300?image={item.id}</Text>
+                        <Text style={{ fontSize: 24 }}>{item.author} Image ID: {item.id}</Text>
                         <Image style={{ width: 50, height: 50 }} source={{
                             uri: "https://picsum.photos/200/300?image=" + item.id
                         }}></Image>
